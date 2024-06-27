@@ -4,6 +4,6 @@ export function setupCounter(element) {
     counter = count
     element.innerHTML = `count is ${counter}`
   }
-  element.addEventListener('click', () => setCounter(counter + 1))
+  element.addEventListener('click', () => document.getElementById("img").src = "https://images.dog.ceo/breeds/kombai/Kombai-indian-Dog.jpg")
   setCounter(0)
 }
