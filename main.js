@@ -2,7 +2,7 @@
  * gets JSON Obj
  * @returns a JSON object with message for link for image as wel as status of the request
  */
-async function getImage() {
+export async function getImage() {
     const response = await fetch('https://dog.ceo/api/breeds/image/random');
     const data = await response.json();
     return data;

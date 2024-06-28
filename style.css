@@ -30,8 +30,9 @@ h1 {
 .gallery {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
   flex-wrap: wrap;
+  gap: 2rem;
   
 }
 
@@ -41,6 +42,7 @@ h1 {
 .image {
   max-width: 400px;
   min-width: 400px;
+  border-radius: 20px;
   
 }
 .button-div {
@@ -59,6 +61,7 @@ h1 {
   border-radius: 5px;
   cursor: pointer;
 }
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
