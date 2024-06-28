@@ -9,5 +9,18 @@
   </head>
   <body>
     <h1>Welcome to Dog-Quiz!</h1>
+    <div id="data-container">Loading data...</div>
+    <script>
+
+      fetch('https://dog.ceo/api/breeds/image/random')
+      .then(response => response.json())
+      .then(data => {
+        const dataContainer = document.getElementById('data-container');
+        const img = document.createElement('img');
+        img.src = data.message;
+        dataContainer.innerHTML = '';
+        dataContainer.appendChild(img);
+      })
+    </script>
   </body>
 </html>
