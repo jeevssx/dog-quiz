@@ -1,26 +1,18 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="style.css" rel="stylesheet">
-    <title>Title</title>
-  </head>
-  <body>
-    <h1>Welcome to Dog-Quiz!</h1>
-    <div id="data-container">Loading data...</div>
-    <script>
 
-      fetch('https://dog.ceo/api/breeds/image/random')
-      .then(response => response.json())
-      .then(data => {
-        const dataContainer = document.getElementById('data-container');
-        const img = document.createElement('img');
-        img.src = data.message;
-        dataContainer.innerHTML = '';
-        dataContainer.appendChild(img);
-      })
-    </script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="style.css" rel="stylesheet">
+  <title>Title</title>
+</head>
+
+<body>
+  <h1>Welcome to Dog-Quiz!</h1>
+  <div id="data-container">Loading data...</div>
+  <script src="main.js"></script>
+</body>
+
 </html>
