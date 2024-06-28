@@ -15,15 +15,28 @@
 
 body {
   margin: 0;
-  display: flex;
+  /* display: flex; */
   min-width: 320px;
   min-height: 100vh;
   justify-content: center;
 }
 
 h1 {
+  text-align: center;
   font-size: 3.2em;
   line-height: 1.1;
+}
+
+.gallery {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+/* guaranteeing size of img */
+.image {
+  max-width: 400px;
+  min-width: 400px;
 }
 
 @media (prefers-color-scheme: light) {
@@ -31,9 +44,11 @@ h1 {
     color: #213547;
     background-color: #ffffff;
   }
+
   a:hover {
     color: #747bff;
   }
+
   button {
     background-color: #f9f9f9;
   }
