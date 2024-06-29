@@ -8,6 +8,14 @@ export async function getImage() {
     console.log(data)
     return data;
 }
+export async function getImageByDoggo(doggo) {
+    const response = await fetch(`https://dog.ceo.api/breed/${doggo}/images`);
+    const data = await response.json();
+    /**
+     * returns images of all of a breed and subreeed
+     */
+    return data;
+} 
 
 export async function getBreedList() {
     const response = await fetch('https://dog.ceo/api/breeds/list/all');
@@ -16,16 +24,7 @@ export async function getBreedList() {
 
     Object.keys(data.message).forEach(key => {
         const subBreeds = data.message[key];
-        
-        if (subBreeds.length > 0) {
-            breedsArray.push(key);
-            subBreeds.forEach(subBreed => {
-                breedsArray.push(`${key}-${subBreed}`);
-            });
-        }
-        else {
-            breedsArray.push(key);
-        }
+        breedsArray.push(key);
     });
 
     return breedsArray;
