@@ -15,17 +15,10 @@ export async function getImageByDoggo(doggo) {
      * returns images of all of a breed and subreeed
      */
     return data;
-} 
+}
 
 export async function getBreedList() {
     const response = await fetch('https://dog.ceo/api/breeds/list/all');
     const data = await response.json();
-    const breedsArray = [];
-
-    Object.keys(data.message).forEach(key => {
-        const subBreeds = data.message[key];
-        breedsArray.push(key);
-    });
-
-    return breedsArray;
+    return data;
 }

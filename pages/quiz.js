@@ -1,7 +1,6 @@
 import { getImage, getBreedList } from "../apiService";
 
 
-
 getImage()
     .then(data => {
         const dataContainer = document.getElementsByClassName('incomplete')[0];
@@ -12,9 +11,14 @@ getImage()
         dataContainer.innerHTML = '';
         dataContainer.appendChild(img);
     })
-
-
+let breedsArray;
 getBreedList()
     .then(data => {
-        
+        breedsArray = [];
+
+        Object.keys(data.message).forEach(key => {
+            // const subBreeds = data.message[key];
+            breedsArray.push(key);
+        });
+        console.log(breedsArray);
     })
