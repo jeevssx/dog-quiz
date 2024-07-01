@@ -1,35 +1,50 @@
-import { getImage, getBreedList, randomizeBreeds } from "../apiService";
+import { getImage, getBreedList } from "../apiService";
 
 let breedsArray;
 let breedsCache = new Set();
-let breedNumber;
-getImage()
-    .then(data => {
-        const dataContainer = document.getElementsByClassName('incomplete')[0];
-        const img = document.createElement('img');
-        img.src = data.message;
-        img.className = 'image';
-        dataContainer.className = 'complete';
-        dataContainer.innerHTML = '';
-        dataContainer.appendChild(img);
-    })
-getBreedList()
-    .then(data => {
-        breedsArray = [];
+let currBreeds = new Set();
+const numBreeds = 4;
 
-        Object.keys(data.message).forEach(key => {
-            // const subBreeds = data.message[key];
-            breedsArray.push(key);
-        });
-        breedNumber = breedsArray.length;
-    })
-// incomplete
-randomizeBreeds(breedsArray, breedsCache, breedNumber)
-    .then(breeds => {
-        // edit the buttons
+
+async function setupQuiz() {
+    try {
+        // load image
+        const imgData = await getImage();
+        const dataContainer = document.getElementsByClassName('incomplete')[0];
+        if (dataContainer) {
+            const img = document.createElement('img');
+            img.src = imgData.message;
+            img.className = 'image';
+            dataContainer.className = 'complete';
+            dataContainer.innerHTML = '';
+            dataContainer.appendChild(img);
+            // get the breed of that dog
+            let breed = imgData.message.split('/')[4];
+            breedsCache.add(breed);
+            currBreeds.add(breed);
+        }
+
+        // get breedList
+        const breedData = await getBreedList();
+        breedsArray = Object.keys(breedData.message);
+
+        // randomize breeds
+        while (currBreeds.size < numBreeds) {
+            let index = Math.floor(Math.random() * breedsArray.length);
+            if (!breedsCache.has(breedsArray[index])) {
+                currBreeds.add(breedsArray[index])
+            }
+        }
         for (let i = 0; i < 4; i++) {
-            let identifier = str(i).concat(" button");
-            let obj = Document.getElementsByClassName(identifier)
+            let identifier = i.toString().concat(" button");
+            let obj = document.getElementsByClassName(identifier)[0];
+            let breeds = Array.from(currBreeds);
             obj.innerHTML = breeds[i];
         }
-    })
+    }
+    catch (error) {
+        console.error('Error setting up the quiz:', error);
+    }
+}
+
+setupQuiz();
