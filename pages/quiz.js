@@ -4,7 +4,11 @@ let breedsArray;
 let breedsCache = new Set();
 let currBreeds = new Set();
 const numBreeds = 4;
+let score = 0;
 
+function updateScore() {
+    document.getElementById('score').innerText = score;
+}
 
 async function setupQuiz() {
     try {
@@ -35,11 +39,16 @@ async function setupQuiz() {
                 currBreeds.add(breedsArray[index])
             }
         }
+
+        let breeds = Array.from(currBreeds).sort(() => 0.5 - Math.random());
+
         for (let i = 0; i < 4; i++) {
             let identifier = i.toString().concat(" button");
             let obj = document.getElementsByClassName(identifier)[0];
+            
             let breeds = Array.from(currBreeds);
             obj.innerHTML = breeds[i];
+            
         }
     }
     catch (error) {
