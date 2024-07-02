@@ -5,6 +5,7 @@ let breedsCache = new Set();
 let currBreeds = new Set();
 const numBreeds = 4;
 let score = 0;
+let correctBreed;
 
 function updateScore() {
     document.getElementById('score').innerText = score;
@@ -12,16 +13,18 @@ function updateScore() {
 
 function shuffleArray(array) {
     let new_array = new Set()
-    while (new_array.size != array.length){
+    while (new_array.size != array.length) {
         let index = Math.floor(Math.random() * 4)
-        if (!new_array.has(array[index])){
+        if (!new_array.has(array[index])) {
             new_array.add(array[index])
         }
     }
     return Array.from(new_array)
 }
 
-async function nextQuestion(){
+
+
+async function nextQuestion() {
     try {
         // reset currBreeds
         currBreeds.clear();
@@ -63,7 +66,7 @@ async function setupQuiz() {
         // get breedList
         const breedData = await getBreedList();
         breedsArray = Object.keys(breedData.message);
-        
+
         // load image
         const imgData = await getImage();
         const dataContainer = document.getElementsByClassName('incomplete')[0];
@@ -79,6 +82,7 @@ async function setupQuiz() {
             let breed = imgData.message.split('/')[4];
             breedsCache.add(breed);
             currBreeds.add(breed);
+            correctBreed = breed;
         }
 
         // randomize breeds
