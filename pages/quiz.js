@@ -98,6 +98,8 @@ async function setupQuiz() {
             let identifier = i.toString().concat(" button");
             let obj = document.getElementsByClassName(identifier)[0];
             obj.innerHTML = breeds[i];
+            //added for button on clicks
+            obj.onclick = clickAnswer;
         }
 
         // setting up the next question
@@ -106,6 +108,19 @@ async function setupQuiz() {
     }
     catch (error) {
         console.error('Error setting up the quiz:', error);
+    }
+}
+
+//check answer sees if correct prints to console updates score
+function clickAnswer(event) {
+    const selectedBreed = event.target.innerHTML;
+    if(selectedBreed === correctBreed) {
+        score++;
+        updateScore();
+        console.log('Correct');
+    }
+    else {
+        console.log("incorrect");
     }
 }
 
