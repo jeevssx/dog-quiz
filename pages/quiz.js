@@ -30,6 +30,7 @@ async function nextQuestion() {
         // reset
         currBreeds.clear();
         answered = false;
+        hideCorrect();
 
         // reload image
         const imgData = await getImage();
@@ -133,9 +134,28 @@ function clickAnswer(event) {
         else {
             console.log("incorrect");
         }
+        showCorrect();
         answered = true;
     }
+}
 
+function showCorrect() {
+    for (let i = 0; i < 4; i++) {
+        let button = document.getElementsByClassName("button " + i)[0];
+        if (button.innerHTML == correctBreed) {
+            button.className = button.className + ' correct';
+        }
+        else {
+            button.className = button.className + ' incorrect';
+        }
+    }
+}
+
+function hideCorrect() {
+    for (let i = 0; i < 4; i++) {
+        let button = document.getElementsByClassName("button " + i)[0];
+        button.className = "button " + i;
+    }
 }
 
 setupQuiz();

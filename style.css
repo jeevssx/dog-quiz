@@ -13,6 +13,22 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.button.correct {
+  background-color: #d2ffbd;
+  color: black;
+  -webkit-transition: background-color 1000ms linear;
+  -ms-transition: background-color 1000ms linear;
+  transition: background-color 1000ms linear;
+}
+
+.button.incorrect {
+  background-color: #ffc0c0;
+  color: black;
+  -webkit-transition: background-color 1000ms linear;
+  -ms-transition: background-color 1000ms linear;
+  transition: background-color 1000ms linear;
+}
+
 body {
   margin: 0;
   /* display: flex; */
@@ -21,14 +37,18 @@ body {
   justify-content: center;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   text-align: center;
   font-size: 3.2em;
   line-height: 1.1;
 }
+
 h2 {
   font-size: 2.4em;
 }
+
 h3 {
   font-size: 2em;
 }
@@ -39,7 +59,7 @@ h3 {
   justify-content: center;
   flex-wrap: wrap;
   gap: 2rem;
-  
+
 }
 
 /* guaranteeing size of img 
@@ -49,8 +69,9 @@ h3 {
   max-width: 400px;
   min-width: 400px;
   border-radius: 20px;
-  
+
 }
+
 .button-div {
   display: flex;
   justify-content: center;
@@ -58,6 +79,7 @@ h3 {
   padding: 10px;
 
 }
+
 .button {
   display: inline-block;
   padding: 10px 20px;
