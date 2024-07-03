@@ -151,17 +151,6 @@ function showCorrect(button) {
     else {
         button.className = button.className + ' incorrect';
     }
-
-    // for (let i = 0; i < 4; i++) {
-    //     let button = document.getElementsByClassName("button " + i)[0];
-    //     if (button.innerHTML == correctBreed) {
-    //         button.className = button.className + ' correct';
-    //     }
-    //     else {
-    //         button.className = button.className + ' incorrect';
-    //     }
-    //     showResetButton();
-    // }
 }
 
 function hideCorrect() {
