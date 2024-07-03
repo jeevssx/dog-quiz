@@ -27,7 +27,7 @@ function shuffleArray(array) {
 
 async function nextQuestion() {
     try {
-        
+
         // reset
         currBreeds.clear();
         answered = false;
@@ -72,9 +72,9 @@ async function nextQuestion() {
 
 async function setupQuiz() {
     try {
-        
+
         hideResetButton();
-        
+
         // get breedList
         const breedData = await getBreedList();
         breedsArray = Object.keys(breedData.message);
@@ -134,24 +134,34 @@ function clickAnswer(event) {
         if (selectedBreed === correctBreed) {
             score++;
             updateScore();
-     
+            answered = true;
         }
-        showCorrect();
-        answered = true;
+        showCorrect(event.target);
+
     }
 }
 
-function showCorrect() {
-    for (let i = 0; i < 4; i++) {
-        let button = document.getElementsByClassName("button " + i)[0];
-        if (button.innerHTML == correctBreed) {
-            button.className = button.className + ' correct';
-        }
-        else {
-            button.className = button.className + ' incorrect';
-        }
+// show image when clicked
+function showCorrect(button) {
+    if (button.innerHTML == correctBreed) {
+        button.className = button.className + ' correct';
         showResetButton();
+        answered = true;
     }
+    else {
+        button.className = button.className + ' incorrect';
+    }
+
+    // for (let i = 0; i < 4; i++) {
+    //     let button = document.getElementsByClassName("button " + i)[0];
+    //     if (button.innerHTML == correctBreed) {
+    //         button.className = button.className + ' correct';
+    //     }
+    //     else {
+    //         button.className = button.className + ' incorrect';
+    //     }
+    //     showResetButton();
+    // }
 }
 
 function hideCorrect() {
