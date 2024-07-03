@@ -1,8 +1,9 @@
 {
     "routes": [
         {
-            "source": "/quiz",
-            "destination": "/quiz.html"
+            "src": "/[^.]+",
+            "dest": "/",
+            "status": 200
         }
     ]
 }
