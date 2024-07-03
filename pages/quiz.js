@@ -6,7 +6,7 @@ let currBreeds = new Set();
 const numBreeds = 4;
 let score = 0;
 let correctBreed;
-let answered;
+let answered = false;
 
 function updateScore() {
     document.getElementById('score').innerText = score;
@@ -27,16 +27,18 @@ function shuffleArray(array) {
 
 async function nextQuestion() {
     try {
+        
         // reset
         currBreeds.clear();
         answered = false;
         hideCorrect();
+        hideResetButton();
 
         // reload image
         const imgData = await getImage();
         const img = document.getElementsByClassName('image')[0];
         img.src = imgData.message;
-        console.log(img)
+
 
         // get the breed of that dog
         let breed = imgData.message.split('/')[4];
@@ -70,6 +72,9 @@ async function nextQuestion() {
 
 async function setupQuiz() {
     try {
+        
+        hideResetButton();
+        
         // get breedList
         const breedData = await getBreedList();
         breedsArray = Object.keys(breedData.message);
@@ -115,7 +120,7 @@ async function setupQuiz() {
 
         // setting up the next question
         let temp = document.getElementById('test');
-        test.onclick = nextQuestion;
+        temp.onclick = nextQuestion;
     }
     catch (error) {
         console.error('Error setting up the quiz:', error);
@@ -129,10 +134,7 @@ function clickAnswer(event) {
         if (selectedBreed === correctBreed) {
             score++;
             updateScore();
-            console.log('Correct');
-        }
-        else {
-            console.log("incorrect");
+     
         }
         showCorrect();
         answered = true;
@@ -148,6 +150,7 @@ function showCorrect() {
         else {
             button.className = button.className + ' incorrect';
         }
+        showResetButton();
     }
 }
 
@@ -156,6 +159,16 @@ function hideCorrect() {
         let button = document.getElementsByClassName("button " + i)[0];
         button.className = "button " + i;
     }
+}
+
+function showResetButton() {
+    let resetButton = document.getElementById('test');
+    resetButton.classList.remove('hidden');
+}
+
+function hideResetButton() {
+    let resetButton = document.getElementById('test');
+    resetButton.classList.add('hidden');
 }
 
 setupQuiz();

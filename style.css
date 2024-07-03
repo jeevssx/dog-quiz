@@ -91,6 +91,10 @@ h3 {
   cursor: pointer;
 }
 
+.hidden {
+  display: none;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
