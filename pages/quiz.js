@@ -39,6 +39,10 @@ async function nextQuestion() {
 
         // get the breed of that dog
         let breed = imgData.message.split('/')[4];
+        let subname = breed.split('-');
+        if (subname.length > 1) {
+            breed = subname[1] + ' ' + subname[0];
+        }
         breedsCache.add(breed);
         currBreeds.add(breed);
         correctBreed = breed;
@@ -82,6 +86,10 @@ async function setupQuiz() {
 
             // get the breed of that dog
             let breed = imgData.message.split('/')[4];
+            let subname = breed.split('-');
+            if (subname.length > 1) {
+                breed = subname[1] + ' ' + subname[0];
+            }
             breedsCache.add(breed);
             currBreeds.add(breed);
             correctBreed = breed;
