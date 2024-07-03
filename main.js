@@ -1,4 +1,4 @@
-import { getImage } from "./apiService";
+import { getImage } from "./apiService.js";
 /**
  * loop 4 times for images
  */

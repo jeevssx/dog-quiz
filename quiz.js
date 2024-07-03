@@ -1,4 +1,4 @@
-import { getImage, getBreedList } from "./apiService";
+import { getImage, getBreedList } from "./apiService.js";
 
 let breedsArray;
 let breedsCache = new Set();
